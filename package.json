@@ -1,9 +1,9 @@
 {
   "name": "three-streamlines",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Visualise three dimensional vector fields in threejs using stream lines.",
   "main": "src/three-streamlines.js",
-  "unpkg": "dist/threestreamlines.min.js",
+  "unpkg": "dist/three-streamlines.min.js",
   "scripts": {
     "build": "rollup -c \"rollup_config.js\""
   },
