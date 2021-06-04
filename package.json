@@ -1,6 +1,6 @@
 {
   "name": "three-streamlines",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Visualise three dimensional vector fields in threejs using stream lines.",
   "main": "src/three-streamlines.js",
   "unpkg": "dist/three-streamlines.min.js",
@@ -13,6 +13,7 @@
   },
   "files": [
     "dist/**/*",
+    "src/**/*",
     "example/**/*"
   ],
   "homepage": "https://www.3dstreamlines.com/",
