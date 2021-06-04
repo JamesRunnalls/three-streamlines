@@ -35,12 +35,6 @@ scene.add(streamlines.object());
 
 ## API reference
 
-### Initialisation
-
-```
-StreamLines(data, bounds, scene, options)
-```
-
 ### data
 
 | Parameter    | Description                                                       |
