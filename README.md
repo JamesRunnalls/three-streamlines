@@ -1,41 +1,36 @@
-# 3D Streamlines
+# THREE Streamlines
 
-[![npm version](https://badge.fury.io/js/3dstreamlines.svg)](https://badge.fury.io/js/3dstreamlines)
+[![npm version](https://badge.fury.io/js/three-streamlines.svg)](https://badge.fury.io/js/three-streamlines)
 
 Visualise three dimensional vector fields in browser using stream lines.
 
-![Image of Lake Geneva](https://3dstreamlines.s3.eu-central-1.amazonaws.com/tornado.png)
-
+![Image of 3D Streamlines](https://3dstreamlines.s3.eu-central-1.amazonaws.com/tornado.png)
 
 Uses [ThreeJS](https://github.com/mrdoob/three.js/)/WebGL for 3D rendering.
 
 Check out the examples:
 
-- [Basic](https://jamesrunnalls.github.io/3dstreamlines/example/basic/) ([source](https://github.com/jamesrunnalls/3dstreamlines/blob/master/example/basic/index.html))
+- [Basic](https://jamesrunnalls.github.io/three-streamlines/example/basic/) ([source](https://github.com/jamesrunnalls/three-streamlines/blob/master/example/basic/index.html))
 - [Viewer](https://3dstreamlines.com) ([source](https://github.com/JamesRunnalls/3dstreamlines-viewer))
 
 ## Quick start
 
 ```
-import StreamLines from '3dstreamlines';
+import Streamlines from 'three-streamlines';
 ```
 
 or
 
 ```
-var StreamLines = require('3dstreamlines');
-```
-
-or even
-
-```
-<script src="//unpkg.com/3dstreamlines"></script>
+<script src="//unpkg.com/three-streamlines"></script>
 ```
 
 then
 
 ```
-const streamlines = new StreamLines(data, bounds, scene, options);
+
+const streamlines = new Streamlines(data, bounds, options);
+scene.add(streamlines.object());
 ```
 
 ## API reference
@@ -126,28 +121,20 @@ StreamLines(data, bounds, scene, options)
 }
 ```
 
-### scene
-
-This is a ThreeJS scene object created as follows:
-
-```
-const scene = new THREE.Scene();
-```
-
 ### options
 
-| Option            | Description                                               | Default |
-| ----------------- | --------------------------------------------------------- | ------- |
-| noParticles       | Number of streams to be plotted                           | 10000   |
-| maxAge            | Maximum age (number of animation timesteps) of any stream | 200     |
-| fadeOutPercentage | Percentage of stream to fade out                          | 0.1     |
-| individualColors  | Number of individual colors in color ramp                 | 100     |
-| velocityFactor    | Unitless velocity factor to speed up/ slow down streams   | 0.1     |
-| min               | Minimum value for color range                             | 0       |
-| max               | Maximum value for color range                             | 1       |
-| nodata            | Custom no data value                                      | null    |
-| colorSource       | Use velocity magnitude or use data.m as color             | false   |
-| colors            | Color range                                               | {}      |
+| Option            | Description                                               | Default  |
+| ----------------- | --------------------------------------------------------- | -------- |
+| noParticles       | Number of streams to be plotted                           | 10000    |
+| maxAge            | Maximum age (number of animation timesteps) of any stream | 200      |
+| fadeOutPercentage | Percentage of stream to fade out                          | 0.1      |
+| individualColors  | Number of individual colors in color ramp                 | 100      |
+| velocityFactor    | Unitless velocity factor to speed up/ slow down streams   | 0.1      |
+| min               | Minimum value for color range                             | Data min |
+| max               | Maximum value for color range                             | Data max |
+| nodata            | Custom no data value                                      | null     |
+| colorSource       | Use velocity magnitude or use data.m as color             | false    |
+| colors            | Color range                                               | {}       |
 
 ```
 {

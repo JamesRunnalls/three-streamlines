@@ -1,1 +1,1 @@
-export { default } from "./3dstreamlines.js";
+export { default } from "./three-streamlines.js";

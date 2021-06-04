@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Three Streamlines</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <style type="text/css">
+      body {
+        background-color: #f0f0f0;
+        margin: 0px;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- include javascript files -->
+    <script
+      type="text/javascript"
+      src="https://unpkg.com/three@0.129.0"
+    ></script>
+    <script src="https://unpkg.com/axios@0.21.1"></script>
+    <script src="../../dist/three-streamlines.js"></script>
+    <script type="text/javascript">
+      var renderer;
+      var scene;
+      var camera;
+      var streamlines;
+      var control;
+      var r;
+
+      async function init() {
+        // create a scene, that will hold all our elements such as objects, cameras and lights.
+        scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x000000);
+
+        // create a camera, which defines where we're looking at.
+        camera = new THREE.PerspectiveCamera(
+          35,
+          window.innerWidth / window.innerHeight,
+          0.1,
+          1000
+        );
+
+        // create a render, sets the background color and the size
+        renderer = new THREE.WebGLRenderer({ alpha: true });
+        renderer.setClearColor(0x000000, 1.0);
+        renderer.setSize(window.innerWidth, window.innerHeight);
+
+        // create a cube and add to scene
+
+        // position and point the camera to the center of the scene
+        camera.position.x = 15;
+        camera.position.y = 35;
+        camera.position.z = 55;
+		camera.lookAt(scene.position);
+
+        // add the output of the renderer to the html element
+        document.body.appendChild(renderer.domElement);
+
+        var light = new THREE.AmbientLight(0x404040);
+        scene.add(light);
+
+        var { data } = await axios.get(
+          "https://3dstreamlines.s3.eu-central-1.amazonaws.com/tornado.json"
+        );
+
+        streamlines = new Streamlines(data.grid, data.bounds);
+        scene.add(streamlines.object());
+        startAnimationLoop();
+      }
+      function startAnimationLoop() {
+        streamlines.animate();
+        renderer.render(scene, camera);
+        window.requestAnimationFrame(startAnimationLoop);
+      }
+      window.onload = init;
+    </script>
+  </body>
+</html>
